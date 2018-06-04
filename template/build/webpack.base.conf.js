@@ -22,7 +22,7 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: ['babel-polyfill', './src/main.js']    //处理安卓低版本不支持promise的配置方法
   },
   output: {
     path: config.build.assetsRoot,
@@ -78,6 +78,12 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader",
+
       }
     ]
   },
